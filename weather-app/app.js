@@ -22,12 +22,25 @@ const settings = {
 };
 
 
+const displayAddress = (data) => {
+  console.log(`Address: ${data.formatted_address}`);
+  console.log(`Lat: ${data.geometry.location.lat}`)
+  console.log(`Long: ${data.geometry.location.lng}`)
+
+}
+
 
 request({
   url: settings.url,
   json: true
 }, (error, resp, body) => {
-  console.log(`Address: ${body.results[0].formatted_address}`);
-  console.log(`Lat: ${body.results[0].geometry.location.lat}`)
-  console.log(`Long: ${body.results[0].geometry.location.lng}`)
+  if (error) {
+    console.log('Unable to connect to geocode api');
+  } else if (body.status === 'ZERO_RESULTS') {
+    console.log(`No results for address [${address}]`);
+  } else if (body.status === 'OK') {
+    displayAddress(body.results[0]);
+  } else {
+    console.log('Unhandled response');
+  }
 });
