@@ -12,5 +12,7 @@ request({
   url: settings.url,
   json: true
 }, (error, resp, body) => {
-  console.log(body);
+  console.log(`Address: ${body.results[0].formatted_address}`);
+  console.log(`Lat: ${body.results[0].geometry.location.lat}`)
+  console.log(`Long: ${body.results[0].geometry.location.lng}`)
 });
