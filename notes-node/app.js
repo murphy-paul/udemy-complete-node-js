@@ -1,14 +1,10 @@
-console.log('Starting app.');
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
-
 const notes = require('./notes');
 
-
 const argv = yargs.argv;
-var command = argv._[0];
+const command = argv._[0];
 
 
 const displayNote = (note) => {
@@ -28,11 +24,11 @@ if (command === 'add') {
         console.log('Note title taken');
     }
 } else if (command === 'list') {
-    notes.getAll();
+    const allNotes = notes.getAll();
+    allNotes.forEach((note) => displayNote(note));
 } else if (command === 'read') {
     const note = notes.readNote(argv.title);
     if (note) {
-        console.log(`found note: ${JSON.stringify(note)}`);
         displayNote(note);
     } else {
         console.log(`No note found with title ${argv.title}`);
