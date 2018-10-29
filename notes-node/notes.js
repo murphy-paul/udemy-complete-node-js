@@ -47,8 +47,22 @@ const readNote = (title) => {
   console.log(`Finding note with title [${title}]`);
 }
 
+/**
+ * Attempt to delete a note by it's title
+ * 
+ * @param {string} title of the note to delete
+ * @returns {int} no of notes deleted
+ */
 const deleteNote = (title) => {
-  console.log(`Deleting note [${title}]`);
+  const allNotes = fetchNotes();
+  const filtered = allNotes.filter((note) => note.title !== title);
+
+  if (allNotes.length > filtered.length) {
+    saveNotes(filtered);
+    return allNotes.length - filtered.length;
+  } else {
+    return 0
+  }
 }
 
 
