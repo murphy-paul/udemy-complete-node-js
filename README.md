@@ -1,7 +1,3 @@
-# Udemy course https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/overview
+# Udemy course - The complete nodejs developer
 
-
-line 2
-
-
-line 3
+https://www.udemy.com/the-complete-nodejs-developer-course-2/learn/v4/overview
