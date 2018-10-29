@@ -1,9 +1,24 @@
 const request = require('request');
+const yargs = require('yargs');
 const API_KEY = process.env.API_KEY;
+
+const argv = yargs
+    .option({
+      a: {
+        demand: true,
+        alias: 'address',
+        describe: 'Address to fetch weather for',
+        string: true
+      }
+    })
+    .help()
+    .argv;
+
+const address = encodeURIComponent(argv.address);
 
 const settings = {
   api_key: process.env.API_KEY,
-  url: `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.API_KEY}&address=277%20elm%20park%20clonmel%20ireland`
+  url: `https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.API_KEY}&address=${address}`
 };
 
 
