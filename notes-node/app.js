@@ -12,12 +12,14 @@ var command = argv._[0];
 
 
 const displayNote = (note) => {
+    debugger;
     console.log('Note found')
     console.log('--');
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);
 }
 
+debugger;
 if (command === 'add') {
     const note = notes.addNote(argv.title, argv.body);
     if (note) {
