@@ -43,8 +43,15 @@ const getAll = () => {
   console.log("getting all notes");
 };
 
+/**
+ * 
+ * @param {string} title of the note to find
+ * @returns {{title: string, body:string}} note with matching title
+ */
 const readNote = (title) => {
-  console.log(`Finding note with title [${title}]`);
+  const notes = fetchNotes().filter((note) => note.title === title);
+
+  return notes[0];
 }
 
 /**
