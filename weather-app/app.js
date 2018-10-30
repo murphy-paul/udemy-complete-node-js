@@ -1,5 +1,6 @@
 const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
+const weather = require('./weather/weather');
 
 const argv = yargs
     .option({
@@ -18,9 +19,12 @@ geocode.geocodeAddress(argv.address, (err, data) => {
     console.log(err);
   } else {
     console.log(data);
+    weather.getWeather(data);
   }
 });
 
+
+// https://api.darksky.net/forecast/[key]/[latitude],[longitude]
 // its async dummy
 // if (geocodeAddress) {
 //   console.log(`Got an address: ${JSON.stringify(geocodeAddress)}`);
