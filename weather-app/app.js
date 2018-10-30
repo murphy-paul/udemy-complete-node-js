@@ -19,15 +19,12 @@ geocode.geocodeAddress(argv.address, (err, data) => {
     console.log(err);
   } else {
     console.log(data);
-    weather.getWeather(data);
+    weather.getWeather(data, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
   }
 });
-
-
-// https://api.darksky.net/forecast/[key]/[latitude],[longitude]
-// its async dummy
-// if (geocodeAddress) {
-//   console.log(`Got an address: ${JSON.stringify(geocodeAddress)}`);
-// } else {
-//   console.log('oops');
-// }
