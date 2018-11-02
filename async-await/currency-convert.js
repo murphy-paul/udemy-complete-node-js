@@ -11,10 +11,19 @@ const url = `http://data.fixer.io/api/latest?access_key=${api_key}`;
  * @returns {number} the exchange rate.
  */
 const getExchangeRate = async (from, to) => {
-  const response = await axios.get(url);
-  const euro = 1 / response.data.rates[from];
-  const rate = euro * response.data.rates[to]; 
-  return rate;
+  try {
+    const response = await axios.get(url);
+    const euro = 1 / response.data.rates[from];
+    const rate = euro * response.data.rates[to]; 
+
+    if (isNaN(rate)) {
+      throw new Error();
+    }
+
+    return rate;  
+  } catch (e) {
+    throw new Error(`Unable to get exchange rate for ${from} and ${to}`);
+  }
 };
 
 /**
@@ -24,10 +33,14 @@ const getExchangeRate = async (from, to) => {
  * @return {array} of countries where current is accepted.
  */
 const getCountries = async (currencyCode) => {
-  const url = `https://restcountries.eu/rest/v2/currency/${currencyCode}`
-  const response = await axios.get(url);
-  
-  return response.data.map(country => country.name);
+  try {
+    const url = `https://restcountries.eu/rest/v2/currency/${currencyCode}`
+    const response = await axios.get(url);    
+
+    return response.data.map(country => country.name);
+  } catch (e) {
+    throw new Error(`Unable to get countries that use ${currencyCode}.`);
+  }
 };
 
 /**
@@ -45,6 +58,23 @@ const convert = async(from, to, amount) => {
   return `${amount} ${from} is worth ${convertedAmount} ${to}. You can spend it in the following countries: ${countries}`;
 }
 
-convert('USD', 'EUR', 20)
+convert('USD', 'CAD', 20)
   .then(data => console.log(data))
   .catch(err => console.log(err));
+
+// const add = async (a, b) => a + b + c;
+
+// const doWork = async () => {
+//   try  {
+//     const result = await add(12, 13);
+//     return result;
+//   } catch (e) {
+//     return -1;
+//   }
+// };
+
+// doWork().then(data => {
+//   console.log(data);
+// }).catch(err => {
+//   console.log(`Something went wrong!`);
+// });
