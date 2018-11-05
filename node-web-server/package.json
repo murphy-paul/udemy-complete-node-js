@@ -4,7 +4,8 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js -e js,hbs"
+    "runLocal": "nodemon server.js -e js,hbs",
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.16.4",
