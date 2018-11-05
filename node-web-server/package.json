@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js -e js,hbs"
+  },
   "dependencies": {
     "express": "^4.16.4",
     "hbs": "^4.0.1"
