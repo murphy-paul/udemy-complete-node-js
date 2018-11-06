@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expect": "^23.6.0",
+    "express": "^4.16.4",
     "mocha": "^5.2.0"
   }
 }
