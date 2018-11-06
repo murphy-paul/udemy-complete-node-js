@@ -1,17 +1,21 @@
-const expect = require('expect');
+const expect = require('chai').expect;
 
 const utils = require('./utils');
 
-it('should add two number', () => {
-  const res = utils.add(3,4);
+describe('Utils', () => {
+  it('should add two number', () => {
+    const res = utils.add(3,4);
+  
+    expect(res).to.be.equal(7);
+  });
+  
+  it('should async add two number',  (done) => {
+    utils.asyncAdd(1, 2, (sum) => {
+      expect(sum).to.be.equal(3);
+  
+      done();
+    })
+  })
 
-  expect(res).toBe(7);
 });
 
-it('should async add two number',  (done) => {
-  utils.asyncAdd(1, 2, (sum) => {
-    expect(sum).toBe(3);
-
-    done();
-  })
-})
