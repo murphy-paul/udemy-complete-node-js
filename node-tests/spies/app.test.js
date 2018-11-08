@@ -31,6 +31,6 @@ describe('App', () => {
 
     app.handleSignup(email, psswd);
 
-    expect(db.saveUser).to.have.been.called; //With({ email, psswd });
+    expect(db.saveUser).to.have.been.calledWith({ email, psswd });
   })
 })
